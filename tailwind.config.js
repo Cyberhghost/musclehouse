@@ -3,42 +3,48 @@ module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
       colors: {
         primary: {
-          50: '#fff7ed',
-          100: '#ffedd5',
-          200: '#fed7aa',
-          300: '#fdba74',
-          400: '#fb923c',
-          500: '#f97316',
-          600: '#ea580c',
-          700: '#c2410c',
-          800: '#9a3412',
-          900: '#7c2d12',
-          950: '#431407',
+          50: '#e8f4f2',
+          100: '#d4ece8',
+          200: '#b8d4cf',
+          300: '#91c9c3',
+          400: '#56e0d4',
+          500: '#2ec4b6',
+          600: '#1a9e92',
+          700: '#0d7a70',
+          800: '#0b6058',
+          900: '#0a4b45',
+          950: '#073a35'
         },
         dark: {
-          50: '#f8f9fa',
-          100: '#e9ecef',
-          200: '#dee2e6',
-          300: '#ced4da',
-          400: '#adb5bd',
-          500: '#6c757d',
-          600: '#495057',
-          700: '#343a40',
-          800: '#212529',
-          900: '#121416',
-          950: '#0a0c0d',
+          50: '#e8f4f2',
+          100: '#dbe4ea',
+          200: '#b8d4cf',
+          300: '#5a7a88',
+          400: '#1a2e42',
+          500: '#152535',
+          600: '#0f1e30',
+          700: '#0b1520',
+          800: '#08101a',
+          900: '#050b14',
+          950: '#03070e'
         },
+        accent: {
+          gold: '#f4c430',
+          green: '#4ade80'
+        }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-      },
-    },
+        sans: ['Barlow', 'system-ui', 'sans-serif'],
+        display: ['Barlow Condensed', 'Barlow', 'system-ui', 'sans-serif'],
+        mono: ['Share Tech Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
+      }
+    }
   },
-  plugins: [],
+  plugins: []
 };
