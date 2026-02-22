@@ -1,5 +1,7 @@
 import { prisma } from './prisma';
 
+const DEFAULT_SHIPPING_FEE = 550;
+
 export async function calculateShipping(
   wilaya: string,
   items: Array<{ price: number; quantity: number; freeShipping: boolean }>
@@ -16,5 +18,5 @@ export async function calculateShipping(
 
   // Priority 3: per-wilaya fee
   const fee = await prisma.shippingFee.findUnique({ where: { wilaya } });
-  return fee ? Number(fee.amount) : 550;
+  return fee ? Number(fee.amount) : DEFAULT_SHIPPING_FEE;
 }
