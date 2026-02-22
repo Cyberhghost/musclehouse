@@ -30,8 +30,8 @@ async function sendToDeliveryAPI(order: {
       }),
     });
     if (res.ok) {
-      const data = await res.json();
-      return (data.tracking_number as string | undefined) || (data.trackingNumber as string | undefined) || null;
+      const apiResponse = await res.json();
+      return (apiResponse.tracking_number as string | undefined) || (apiResponse.trackingNumber as string | undefined) || null;
     }
   } catch (err) {
     console.error('Delivery API error:', err);
