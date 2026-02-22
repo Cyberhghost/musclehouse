@@ -5,8 +5,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Muscle House DZ',
-  description: 'Votre boutique de suppléments sportifs en Algérie',
+  title: 'Muscle House DZ — Performance authentique',
+  description: 'Votre boutique de suppléments sportifs en Algérie. Produits authentiques, livraison rapide dans toute l\'Algérie.',
 };
 
 export default function RootLayout({
