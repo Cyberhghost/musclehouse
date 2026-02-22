@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { CartProvider } from '@/context/CartContext';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Muscle House DZ',
@@ -13,7 +16,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body>{children}</body>
+      <body className="bg-dark-950 text-dark-100 min-h-screen flex flex-col">
+        <CartProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </CartProvider>
+      </body>
     </html>
   );
 }

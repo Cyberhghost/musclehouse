@@ -1,9 +1,10 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { NextRequest } from 'next/server';
 
-const JWT_SECRET = process.env.JWT_SECRET;
-if (!JWT_SECRET) {
-  throw new Error('JWT_SECRET environment variable is not set');
+function getSecret(): string {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) throw new Error('JWT_SECRET environment variable is not set');
+  return secret;
 }
 
 export interface AdminTokenPayload extends JwtPayload {
@@ -12,12 +13,12 @@ export interface AdminTokenPayload extends JwtPayload {
 }
 
 export function signToken(payload: object): string {
-  return jwt.sign(payload, JWT_SECRET as string, { expiresIn: '24h' });
+  return jwt.sign(payload, getSecret(), { expiresIn: '24h' });
 }
 
 export function verifyToken(token: string): AdminTokenPayload | null {
   try {
-    return jwt.verify(token, JWT_SECRET as string) as AdminTokenPayload;
+    return jwt.verify(token, getSecret()) as AdminTokenPayload;
   } catch {
     return null;
   }
