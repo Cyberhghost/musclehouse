@@ -1,111 +1,161 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 border-t border-gray-700 mt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer style={styles.footer}>
+      <div style={styles.container}>
+        <div style={styles.content}>
           {/* Brand */}
-          <div className="md:col-span-2">
-            <h3 className="text-white font-extrabold text-lg tracking-tight mb-3">
-              MUSCLE HOUSE <span className="text-primary-500">DZ</span>
-            </h3>
-            <p className="text-gray-400 text-sm leading-relaxed mb-4">
-              Votre partenaire nutrition sportive en Algérie. Produits authentiques, livraison rapide dans toute l&apos;Algérie.
+          <div style={styles.section}>
+            <h4 style={styles.heading}>Muscle House DZ</h4>
+            <p style={styles.text}>
+              Votre spécialiste en compléments alimentaires en Algérie. Produits
+              100% authentiques, livraison rapide dans les 48 wilayas.
             </p>
-            {/* Socials */}
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="https://wa.me/213560000000"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-green-400 transition-colors text-sm flex items-center gap-1"
-              >
-                <span>📱</span> WhatsApp
+          </div>
+
+          {/* Contact */}
+          <div style={styles.section}>
+            <h4 style={styles.heading}>Contact</h4>
+            <div style={styles.contacts}>
+              <a href="tel:+213561727883" style={styles.link}>
+                📞 0561 72 78 83
+              </a>
+              <a href="tel:+213557532895" style={styles.link}>
+                📞 0557 53 28 95
               </a>
               <a
-                href="https://www.instagram.com/musclehousedz"
+                href="https://wa.me/213561727883"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-pink-400 transition-colors text-sm flex items-center gap-1"
+                style={styles.link}
               >
-                <span>📸</span> Instagram
+                💬 WhatsApp 0561 72 78 83
               </a>
               <a
-                href="https://www.facebook.com/musclehousedz"
+                href="https://wa.me/213557532895"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-blue-400 transition-colors text-sm flex items-center gap-1"
+                style={styles.link}
               >
-                <span>👥</span> Facebook
+                💬 WhatsApp 0557 53 28 95
               </a>
             </div>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h4 className="text-white font-semibold mb-3">Contact</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li>
-                <a
-                  href="https://wa.me/213560000000"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-green-400 transition-colors"
-                >
-                  📱 WhatsApp
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://share.google/IySlRsGSU7mvHTsgf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-primary-400 transition-colors"
-                >
-                  📍 Notre boutique (Maps)
-                </a>
-              </li>
-              <li>
-                <a href="mailto:contact@musclehouse.dz" className="hover:text-primary-400 transition-colors">
-                  ✉️ contact@musclehouse.dz
-                </a>
-              </li>
-            </ul>
+          {/* Store */}
+          <div style={styles.section}>
+            <h4 style={styles.heading}>Notre magasin</h4>
+            <p style={styles.text}>
+              📍{" "}
+              <a
+                href="https://share.google/IySlRsGSU7mvHTsgf"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ ...styles.link, textDecoration: "underline" }}
+              >
+                Voir sur Google Maps
+              </a>
+            </p>
           </div>
 
-          {/* Links */}
-          <div>
-            <h4 className="text-white font-semibold mb-3">Navigation</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/" className="text-gray-400 hover:text-primary-400 transition-colors">
-                  Accueil
-                </Link>
-              </li>
-              <li>
-                <Link href="/catalogue" className="text-gray-400 hover:text-primary-400 transition-colors">
-                  Catalogue
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-gray-400 hover:text-primary-400 transition-colors">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/suivi" className="text-gray-400 hover:text-primary-400 transition-colors">
-                  Suivi commande
-                </Link>
-              </li>
-            </ul>
+          {/* Social */}
+          <div style={styles.section}>
+            <h4 style={styles.heading}>Suivez-nous</h4>
+            <div style={styles.social}>
+              <a
+                href="https://www.facebook.com/share/17foL6TEka/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={styles.socialLink}
+                aria-label="Facebook"
+              >
+                <i className="fab fa-facebook-f" />
+              </a>
+              <a
+                href="https://www.instagram.com/muscle.house_dz"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={styles.socialLink}
+                aria-label="Instagram"
+              >
+                <i className="fab fa-instagram" />
+              </a>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
+        <div style={styles.bottom}>
           © 2025 Muscle House DZ — Tous droits réservés
         </div>
       </div>
     </footer>
   );
 }
+
+const styles: Record<string, React.CSSProperties> = {
+  footer: {
+    background: "#0a0a0a",
+    color: "#fff",
+    padding: "60px 0 30px",
+    fontFamily: "'Poppins', sans-serif",
+  },
+  container: {
+    maxWidth: "1200px",
+    margin: "0 auto",
+    padding: "0 32px",
+  },
+  content: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+    gap: "32px",
+  },
+  section: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "8px",
+  },
+  heading: {
+    fontSize: "14px",
+    fontWeight: 800,
+    letterSpacing: ".1em",
+    textTransform: "uppercase",
+    marginBottom: "12px",
+    color: "#fff",
+  },
+  text: {
+    fontSize: "13px",
+    lineHeight: 1.6,
+    color: "#f5f5f5",
+    margin: 0,
+  },
+  contacts: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "6px",
+  },
+  link: {
+    fontSize: "13px",
+    lineHeight: 1.6,
+    color: "#f5f5f5",
+    textDecoration: "none",
+  },
+  social: {
+    display: "flex",
+    gap: "12px",
+    marginTop: "4px",
+  },
+  socialLink: {
+    fontSize: "18px",
+    color: "#f5f5f5",
+    textDecoration: "none",
+  },
+  bottom: {
+    textAlign: "center",
+    fontSize: "12px",
+    color: "#d0d0d0",
+    marginTop: "30px",
+    paddingTop: "20px",
+    borderTop: "1px solid rgba(255,255,255,0.08)",
+  },
+};

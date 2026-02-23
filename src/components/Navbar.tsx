@@ -1,101 +1,261 @@
-'use client';
-import Link from 'next/link';
-import { useState } from 'react';
-import { useCart } from '@/context/CartContext';
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
 
 export default function Navbar() {
-  const { itemCount } = useCart();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [cartCount] = useState(0);
+  const [search, setSearch] = useState("");
+  const [activeLink, setActiveLink] = useState("Accueil");
+
+  const navLinks = [
+    { label: "Accueil", href: "#hero" },
+    { label: "Catégories", href: "#categories" },
+    { label: "Promos", href: "#soldes-section" },
+    { label: "Nouveautés", href: "#latest-products" },
+  ];
 
   return (
-    <header className="sticky top-0 z-50">
-      {/* Promo bar */}
-      <div className="bg-black text-white text-center text-xs sm:text-sm py-2 px-4 font-medium">
-        🎉 Livraison gratuite dès 5&nbsp;000 DA d&apos;achat — Partout en Algérie
+    <>
+      {/* Google Fonts & FontAwesome */}
+      <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      />
+
+      {/* Promo Bar */}
+      <div style={styles.promoBar}>
+        <span style={styles.promoSpan}>
+          <b>MUSCLE HOUSE DZ</b> — QUALITÉ AUTHENTIQUE • LIVRAISON 48 WILAYAS •
+          SUPPORT WHATSAPP
+        </span>
       </div>
 
-      {/* Main nav */}
-      <nav className="bg-white border-b border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
-              <span className="text-gray-900 font-extrabold text-xl tracking-tight">
-                MUSCLE HOUSE <span className="text-primary-500">DZ</span>
-              </span>
-            </Link>
+      {/* Header */}
+      <header style={styles.header}>
+        <div style={styles.headerInner}>
+          {/* Logo */}
+          <Link href="/" style={styles.logo}>
+            <span style={styles.logoDot} />
+            MUSCLE HOUSE DZ
+          </Link>
 
-            {/* Desktop nav */}
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="/" className="text-gray-700 hover:text-primary-500 transition-colors text-sm font-medium">
-                Accueil
-              </Link>
-              <Link href="/catalogue" className="text-gray-700 hover:text-primary-500 transition-colors text-sm font-medium">
-                Catalogue
-              </Link>
-              <Link href="/contact" className="text-gray-700 hover:text-primary-500 transition-colors text-sm font-medium">
-                Contact
-              </Link>
-              <Link href="/suivi" className="text-gray-700 hover:text-primary-500 transition-colors text-sm font-medium">
-                Suivi de commande
-              </Link>
-            </div>
-
-            {/* Cart + hamburger */}
-            <div className="flex items-center gap-4">
-              <Link href="/panier" className="relative inline-flex items-center text-gray-700 hover:text-primary-500 transition-colors">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-                {itemCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-primary-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                    {itemCount > 99 ? '99+' : itemCount}
-                  </span>
-                )}
-              </Link>
-
-              {/* Hamburger */}
-              <button
-                className="md:hidden text-gray-700 hover:text-primary-500 transition-colors"
-                onClick={() => setMenuOpen(o => !o)}
-                aria-label="Menu"
+          {/* Nav */}
+          <nav style={styles.navMain}>
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setActiveLink(link.label)}
+                style={{
+                  ...styles.navLink,
+                  ...(activeLink === link.label ? styles.navLinkActive : {}),
+                }}
+                onMouseEnter={(e) => {
+                  if (activeLink !== link.label) {
+                    (e.currentTarget as HTMLElement).style.background = "#0a0a0a";
+                    (e.currentTarget as HTMLElement).style.color = "#fff";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeLink !== link.label) {
+                    (e.currentTarget as HTMLElement).style.background = "transparent";
+                    (e.currentTarget as HTMLElement).style.color = "#0a0a0a";
+                  }
+                }}
               >
-                {menuOpen ? (
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                ) : (
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  </svg>
-                )}
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* Right controls */}
+          <div style={styles.headerRight}>
+            {/* Search */}
+            <div style={styles.searchWrap}>
+              <input
+                type="text"
+                placeholder="Rechercher un produit"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                style={styles.searchInput}
+              />
+              <button style={styles.searchBtn} aria-label="Rechercher">
+                <i className="fa fa-search" />
               </button>
             </div>
+
+            {/* Lang */}
+            <button style={styles.langBtn}>
+              <i className="fa fa-globe" /> FR / AR
+            </button>
+
+            {/* Tracking */}
+            <button style={styles.iconBtn} aria-label="Suivi de commande">
+              <i className="fa fa-truck" />
+            </button>
+
+            {/* Cart */}
+            <button style={styles.iconBtn} aria-label="Panier">
+              <i className="fa fa-bag-shopping" />
+              <span style={styles.cartBadge}>{cartCount}</span>
+            </button>
           </div>
         </div>
-
-        {/* Mobile menu */}
-        {menuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-200 px-4 py-4 flex flex-col gap-4">
-            <Link href="/" onClick={() => setMenuOpen(false)} className="text-gray-700 hover:text-primary-500 transition-colors font-medium">
-              Accueil
-            </Link>
-            <Link href="/catalogue" onClick={() => setMenuOpen(false)} className="text-gray-700 hover:text-primary-500 transition-colors font-medium">
-              Catalogue
-            </Link>
-            <Link href="/contact" onClick={() => setMenuOpen(false)} className="text-gray-700 hover:text-primary-500 transition-colors font-medium">
-              Contact
-            </Link>
-            <Link href="/suivi" onClick={() => setMenuOpen(false)} className="text-gray-700 hover:text-primary-500 transition-colors font-medium">
-              Suivi de commande
-            </Link>
-            <Link href="/panier" onClick={() => setMenuOpen(false)} className="text-gray-700 hover:text-primary-500 transition-colors font-medium">
-              Panier {itemCount > 0 && <span className="ml-1 bg-primary-500 text-white text-xs rounded-full px-2 py-0.5">{itemCount}</span>}
-            </Link>
-          </div>
-        )}
-      </nav>
-    </header>
+      </header>
+    </>
   );
 }
+
+const styles: Record<string, React.CSSProperties> = {
+  promoBar: {
+    background: "#0a0a0a",
+    color: "#fff",
+    textAlign: "center",
+    padding: "10px 20px",
+    fontSize: "12px",
+    letterSpacing: ".14em",
+    fontWeight: 500,
+    position: "relative",
+    overflow: "hidden",
+  },
+  promoSpan: {
+    position: "relative",
+    zIndex: 1,
+  },
+  header: {
+    position: "sticky",
+    top: 0,
+    zIndex: 500,
+    background: "#fff",
+    borderBottom: "1px solid #e5e5e5",
+  },
+  headerInner: {
+    maxWidth: "1400px",
+    margin: "0 auto",
+    padding: "0 32px",
+    height: "68px",
+    display: "flex",
+    alignItems: "center",
+    gap: "32px",
+  },
+  logo: {
+    fontFamily: "'Anton', sans-serif",
+    fontSize: "26px",
+    letterSpacing: ".06em",
+    flexShrink: 0,
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    textTransform: "uppercase",
+    textDecoration: "none",
+    color: "#0a0a0a",
+  },
+  logoDot: {
+    width: "8px",
+    height: "8px",
+    background: "#0a0a0a",
+    borderRadius: "50%",
+    display: "inline-block",
+  },
+  navMain: {
+    display: "flex",
+    gap: "4px",
+    flex: 1,
+  },
+  navLink: {
+    fontSize: "13px",
+    fontWeight: 600,
+    padding: "8px 16px",
+    borderRadius: "4px",
+    letterSpacing: ".04em",
+    textTransform: "uppercase",
+    transition: "background .15s, color .15s",
+    cursor: "pointer",
+    whiteSpace: "nowrap",
+    textDecoration: "none",
+    color: "#0a0a0a",
+    background: "transparent",
+  },
+  navLinkActive: {
+    background: "#0a0a0a",
+    color: "#fff",
+  },
+  headerRight: {
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    marginLeft: "auto",
+  },
+  searchWrap: {
+    display: "flex",
+    alignItems: "center",
+    border: "1.5px solid #e5e5e5",
+    borderRadius: "4px",
+    overflow: "hidden",
+  },
+  searchInput: {
+    border: "none",
+    outline: "none",
+    padding: "8px 14px",
+    fontSize: "13px",
+    fontFamily: "'Poppins', sans-serif",
+    background: "transparent",
+    width: "200px",
+  },
+  searchBtn: {
+    background: "#0a0a0a",
+    color: "#fff",
+    border: "none",
+    padding: "8px 14px",
+    cursor: "pointer",
+    fontSize: "13px",
+  },
+  langBtn: {
+    display: "flex",
+    alignItems: "center",
+    gap: "6px",
+    fontSize: "12px",
+    fontWeight: 700,
+    padding: "7px 12px",
+    border: "1.5px solid #e5e5e5",
+    borderRadius: "4px",
+    cursor: "pointer",
+    letterSpacing: ".08em",
+    background: "transparent",
+    fontFamily: "'Poppins', sans-serif",
+  },
+  iconBtn: {
+    width: "40px",
+    height: "40px",
+    border: "1.5px solid #e5e5e5",
+    borderRadius: "4px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "16px",
+    cursor: "pointer",
+    position: "relative",
+    background: "transparent",
+  },
+  cartBadge: {
+    position: "absolute",
+    top: "-6px",
+    right: "-6px",
+    width: "18px",
+    height: "18px",
+    background: "#0a0a0a",
+    color: "#fff",
+    borderRadius: "50%",
+    fontSize: "9px",
+    fontWeight: 700,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    border: "2px solid #fff",
+  },
+};
