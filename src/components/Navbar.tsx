@@ -23,9 +23,6 @@ export default function Navbar() {
             <Link href="/" className="text-dark-200 hover:text-primary-400 transition-colors text-sm font-medium">
               Accueil
             </Link>
-            <Link href="/catalogue" className="text-dark-200 hover:text-primary-400 transition-colors text-sm font-medium">
-              Catalogue
-            </Link>
             <Link href="/contact" className="text-dark-200 hover:text-primary-400 transition-colors text-sm font-medium">
               Contact
             </Link>
@@ -73,9 +70,6 @@ export default function Navbar() {
         <div className="md:hidden bg-dark-800 border-t border-dark-700 px-4 py-4 flex flex-col gap-4">
           <Link href="/" onClick={() => setMenuOpen(false)} className="text-dark-200 hover:text-primary-400 transition-colors font-medium">
             Accueil
-          </Link>
-          <Link href="/catalogue" onClick={() => setMenuOpen(false)} className="text-dark-200 hover:text-primary-400 transition-colors font-medium">
-            Catalogue
           </Link>
           <Link href="/contact" onClick={() => setMenuOpen(false)} className="text-dark-200 hover:text-primary-400 transition-colors font-medium">
             Contact

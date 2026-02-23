@@ -75,8 +75,8 @@ export default function ProductDetailPage() {
     return (
       <div className="max-w-5xl mx-auto px-4 py-24 text-center text-dark-400">
         <p className="text-xl">Produit introuvable.</p>
-        <Link href="/catalogue" className="mt-4 inline-block text-primary-400 hover:text-primary-300">
-          ← Retour au catalogue
+        <Link href="/" className="mt-4 inline-block text-primary-400 hover:text-primary-300">
+          ← Retour à l&apos;accueil
         </Link>
       </div>
     );
@@ -90,9 +90,7 @@ export default function ProductDetailPage() {
       <nav className="text-sm text-dark-400 mb-6 flex items-center gap-2">
         <Link href="/" className="hover:text-primary-400 transition-colors">Accueil</Link>
         <span>/</span>
-        <Link href="/catalogue" className="hover:text-primary-400 transition-colors">Catalogue</Link>
-        <span>/</span>
-        <Link href={`/catalogue?categoryId=${product.categoryId}`} className="hover:text-primary-400 transition-colors">
+        <Link href={`/?categoryId=${product.categoryId}`} className="hover:text-primary-400 transition-colors">
           {product.category.name}
         </Link>
         <span>/</span>
