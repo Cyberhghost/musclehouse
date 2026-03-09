@@ -1,69 +1,161 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-dark-900 border-t border-dark-700 mt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer style={styles.footer}>
+      <div style={styles.container}>
+        <div style={styles.content}>
           {/* Brand */}
-          <div>
-            <h3 className="text-primary-500 font-extrabold text-lg tracking-tight mb-3">MUSCLE HOUSE DZ</h3>
-            <p className="text-dark-400 text-sm leading-relaxed">
-              Votre partenaire nutrition sportive en Algérie. Produits authentiques, livraison rapide.
+          <div style={styles.section}>
+            <h4 style={styles.heading}>Muscle House DZ</h4>
+            <p style={styles.text}>
+              Votre spécialiste en compléments alimentaires en Algérie. Produits
+              100% authentiques, livraison rapide dans les 48 wilayas.
             </p>
           </div>
 
           {/* Contact */}
-          <div>
-            <h4 className="text-dark-100 font-semibold mb-3">Contact</h4>
-            <ul className="space-y-2 text-sm text-dark-400">
-              <li>
-                <a href="tel:0560000000" className="hover:text-primary-400 transition-colors">
-                  📞 0560 00 00 00
-                </a>
-              </li>
-              <li>
-                <a href="mailto:contact@musclehouse.dz" className="hover:text-primary-400 transition-colors">
-                  ✉️ contact@musclehouse.dz
-                </a>
-              </li>
-              <li className="text-dark-400">📍 Alger, Algérie</li>
-              <li className="text-dark-500 text-xs">NIF: —</li>
-            </ul>
+          <div style={styles.section}>
+            <h4 style={styles.heading}>Contact</h4>
+            <div style={styles.contacts}>
+              <a href="tel:+213561727883" style={styles.link}>
+                📞 0561 72 78 83
+              </a>
+              <a href="tel:+213557532895" style={styles.link}>
+                📞 0557 53 28 95
+              </a>
+              <a
+                href="https://wa.me/213561727883"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={styles.link}
+              >
+                💬 WhatsApp 0561 72 78 83
+              </a>
+              <a
+                href="https://wa.me/213557532895"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={styles.link}
+              >
+                💬 WhatsApp 0557 53 28 95
+              </a>
+            </div>
           </div>
 
-          {/* Links */}
-          <div>
-            <h4 className="text-dark-100 font-semibold mb-3">Navigation</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/" className="text-dark-400 hover:text-primary-400 transition-colors">
-                  Accueil
-                </Link>
-              </li>
-              <li>
-                <Link href="/catalogue" className="text-dark-400 hover:text-primary-400 transition-colors">
-                  Catalogue
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-dark-400 hover:text-primary-400 transition-colors">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/suivi" className="text-dark-400 hover:text-primary-400 transition-colors">
-                  Suivi commande
-                </Link>
-              </li>
-            </ul>
+          {/* Store */}
+          <div style={styles.section}>
+            <h4 style={styles.heading}>Notre magasin</h4>
+            <p style={styles.text}>
+              📍{" "}
+              <a
+                href="https://share.google/IySlRsGSU7mvHTsgf"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ ...styles.link, textDecoration: "underline" }}
+              >
+                Voir sur Google Maps
+              </a>
+            </p>
+          </div>
+
+          {/* Social */}
+          <div style={styles.section}>
+            <h4 style={styles.heading}>Suivez-nous</h4>
+            <div style={styles.social}>
+              <a
+                href="https://www.facebook.com/share/17foL6TEka/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={styles.socialLink}
+                aria-label="Facebook"
+              >
+                <i className="fab fa-facebook-f" />
+              </a>
+              <a
+                href="https://www.instagram.com/muscle.house_dz"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={styles.socialLink}
+                aria-label="Instagram"
+              >
+                <i className="fab fa-instagram" />
+              </a>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-dark-700 mt-8 pt-6 text-center text-dark-500 text-sm">
-          © 2024 Muscle House DZ — Tous droits réservés
+        <div style={styles.bottom}>
+          © 2025 Muscle House DZ — Tous droits réservés
         </div>
       </div>
     </footer>
   );
 }
+
+const styles: Record<string, React.CSSProperties> = {
+  footer: {
+    background: "#0a0a0a",
+    color: "#fff",
+    padding: "60px 0 30px",
+    fontFamily: "'Poppins', sans-serif",
+  },
+  container: {
+    maxWidth: "1200px",
+    margin: "0 auto",
+    padding: "0 32px",
+  },
+  content: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+    gap: "32px",
+  },
+  section: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "8px",
+  },
+  heading: {
+    fontSize: "14px",
+    fontWeight: 800,
+    letterSpacing: ".1em",
+    textTransform: "uppercase",
+    marginBottom: "12px",
+    color: "#fff",
+  },
+  text: {
+    fontSize: "13px",
+    lineHeight: 1.6,
+    color: "#f5f5f5",
+    margin: 0,
+  },
+  contacts: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "6px",
+  },
+  link: {
+    fontSize: "13px",
+    lineHeight: 1.6,
+    color: "#f5f5f5",
+    textDecoration: "none",
+  },
+  social: {
+    display: "flex",
+    gap: "12px",
+    marginTop: "4px",
+  },
+  socialLink: {
+    fontSize: "18px",
+    color: "#f5f5f5",
+    textDecoration: "none",
+  },
+  bottom: {
+    textAlign: "center",
+    fontSize: "12px",
+    color: "#d0d0d0",
+    marginTop: "30px",
+    paddingTop: "20px",
+    borderTop: "1px solid rgba(255,255,255,0.08)",
+  },
+};
